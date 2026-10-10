@@ -3,7 +3,8 @@ import os
 import logging
 from aiogram import Bot, Dispatcher
 from dotenv import load_dotenv
-from app.handlers.broadcast import router as broadcast_router
+from app.handlers.start import router as start_router
+from app.handlers.trips import router as trips_router
 
 load_dotenv()
 
@@ -12,8 +13,8 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=os.getenv("BOT_TOKEN"))
 dp = Dispatcher()
 
-# Підключаємо роутер із фільтром
-dp.include_router(broadcast_router)
+dp.include_router(start_router)
+dp.include_router(trips_router)
 
 async def main():
     print("Бот запущений...")
